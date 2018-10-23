@@ -168,7 +168,7 @@ init 6
 ### Các bước chuẩn bị trên Compute2
 - Thiết lập Hostname
 ```sh 
-hostnamectl set-hostname compute1
+hostnamectl set-hostname compute2
 ```
 
 - Thiết lập IP
