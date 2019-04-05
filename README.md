@@ -2,7 +2,7 @@
 
 # Cài đặt OpenStack 
 
-2.1 Cài đặt PackStack Queens
+[2.1 Cài đặt PackStack Queens](docs/setup/packstack.md)
 
 [2.2 Cài đặt Manual Queens](docs/setup/manual_install.md)
 
