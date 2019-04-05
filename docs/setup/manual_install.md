@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # I. Install OpenStack Manual 
 
 [1. Chuẩn bị mô hình](#1)
