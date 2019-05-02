@@ -6,7 +6,7 @@
 
 [2.2 Cài đặt Manual Queens](docs/setup/manual_install.md)
 
-2.3 Cài đặt Manual Queens tích hợp Ceph (backend Ceph)
+[2.3 Cài đặt Manual Queens tích hợp Ceph (backend Ceph)](https://github.com/uncelvel/tutorial-ceph/blob/master/docs/setup/ceph-vs-openstack.md)
 
 2.4 Cài đặt HA Queens
 

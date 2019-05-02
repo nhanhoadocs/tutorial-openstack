@@ -2136,7 +2136,7 @@ echo "WSGIApplicationGroup %{GLOBAL}" >> /etc/httpd/conf.d/openstack-dashboard.c
 systemctl restart httpd.service memcached.service
 ```	
 
-# Hoàn tất cài đặt truy cập Dashboard 
+## 3.7 Hoàn tất cài đặt truy cập Dashboard 
 
 ```sh 
 http://10.10.10.61
@@ -2145,3 +2145,10 @@ password: passla123
 ```
 
 ![](../../images/noha_dashboard.png)
+
+## 3.8 Tạo network
+Truy cập `Admin` --> `Network` --> `Networks` Chọn `Create Network`
+![](../../images/noha_createnetwork1.png)
+![](../../images/noha_createnetwork2.png)
+![](../../images/noha_createnetwork3.png)
+![](../../images/noha_createnetwork4.png)
