@@ -1993,9 +1993,16 @@ mv /etc/cinder/cinder.{conf,conf.bk}
 ```sh 
 cat << EOF >> /etc/cinder/cinder.conf
 [DEFAULT]
-transport_url = rabbit://openstack:passla123@10.10.10.61
+transport_url = rabbit://openstack:passla123@10.10.10.65
 auth_strategy = keystone
-my_ip = 10.10.10.61
+my_ip = 10.10.10.65
+enabled_backends = lvm
+glance_api_servers = http://10.10.10.65:9292
+[lvm]
+volume_driver = cinder.volume.drivers.lvm.LVMVolumeDriver
+volume_group = cinder-volumes
+iscsi_protocol = iscsi
+iscsi_helper = lioadm
 [backend]
 [backend_defaults]
 [barbican]
@@ -2004,14 +2011,14 @@ my_ip = 10.10.10.61
 [coordination]
 [cors]
 [database]
-connection = mysql+pymysql://cinder:passla123@10.10.10.61/cinder
+connection = mysql+pymysql://cinder:passla123@10.10.10.65/cinder
 [fc-zone-manager]
 [healthcheck]
 [key_manager]
 [keystone_authtoken]
-auth_uri = http://10.10.10.61:5000
-auth_url = http://10.10.10.61:35357
-memcached_servers = 10.10.10.61:11211
+auth_uri = http://10.10.10.65:5000
+auth_url = http://10.10.10.65:35357
+memcached_servers = 10.10.10.65:11211
 auth_type = password
 project_domain_id = default
 user_domain_id = default
