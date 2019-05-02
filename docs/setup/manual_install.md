@@ -1460,16 +1460,18 @@ cat << EOF >> /etc/neutron/plugins/ml2/ml2_conf.ini
 [DEFAULT]
 [l2pop]
 [ml2]
-type_drivers = flat,vlan
-tenant_network_types = 
-mechanism_drivers = linuxbridge
+type_drivers = flat,vlan,vxlan
+tenant_network_types = vxlan
+mechanism_drivers = linuxbridge,l2population
 extension_drivers = port_security
 [ml2_type_flat]
 flat_networks = provider
 [ml2_type_geneve]
 [ml2_type_gre]
 [ml2_type_vlan]
+network_vlan_ranges = provider
 [ml2_type_vxlan]
+vni_ranges = 1:1000
 [securitygroup]
 enable_ipset = true
 EOF
@@ -1500,7 +1502,8 @@ enable_security_group = true
 firewall_driver = neutron.agent.linux.iptables_firewall.IptablesFirewallDriver
 [vxlan]
 enable_vxlan = true
-local_ip = 10.10.10.61
+# network dataVM
+local_ip = 10.10.12.62
 l2_population = true
 EOF
 ```
@@ -1656,9 +1659,9 @@ physical_interface_mappings = provider:ens192
 enable_security_group = true
 firewall_driver = neutron.agent.linux.iptables_firewall.IptablesFirewallDriver
 [vxlan]
-# enable_vxlan = false
 enable_vxlan = true
-local_ip = 10.10.10.62
+# network dataVM
+local_ip = 10.10.12.62
 l2_population = true
 EOF
 ```
