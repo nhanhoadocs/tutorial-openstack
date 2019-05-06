@@ -902,14 +902,16 @@ mv /etc/nova/nova.{conf,conf.bk}
 ```sh
 cat << EOF >> /etc/nova/nova.conf
 [DEFAULT]
-## my_ip = 10.10.10.61
+my_ip = 10.10.10.61
 enabled_apis = osapi_compute,metadata
 use_neutron = True
-## osapi_compute_listen=10.10.10.61
-## metadata_host=10.10.10.61
-## metadata_listen=10.10.10.61
-## metadata_listen_port=8775
+osapi_compute_listen=10.10.10.61
+metadata_host=10.10.10.61
+metadata_listen=10.10.10.61
+metadata_listen_port=8775    
 firewall_driver = nova.virt.firewall.NoopFirewallDriver
+allow_resize_to_same_host=True
+notify_on_state_change = vm_and_task_state
 transport_url = rabbit://openstack:passla123@10.10.10.61:5672
 [api]
 auth_strategy = keystone
