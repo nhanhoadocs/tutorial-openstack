@@ -1395,6 +1395,7 @@ cat << EOF >> /etc/neutron/neutron.conf
 [DEFAULT]
 bind_host = 10.10.10.61
 core_plugin = ml2
+#service_plugins = router
 service_plugins = 
 transport_url = rabbit://openstack:passla123@10.10.10.61
 auth_strategy = keystone
@@ -1429,6 +1430,7 @@ lock_path = /var/lib/neutron/tmp
 [oslo_messaging_amqp]
 [oslo_messaging_kafka]
 [oslo_messaging_notifications]
+#driver = messagingv2
 [oslo_messaging_rabbit]
 rabbit_retry_interval = 1
 rabbit_retry_backoff = 2
@@ -1461,7 +1463,8 @@ cat << EOF >> /etc/neutron/plugins/ml2/ml2_conf.ini
 [l2pop]
 [ml2]
 type_drivers = flat,vlan,vxlan
-tenant_network_types = vxlan
+# tenant_network_types = vxlan
+tenant_network_types = 
 mechanism_drivers = linuxbridge,l2population
 extension_drivers = port_security
 [ml2_type_flat]
@@ -1469,9 +1472,9 @@ flat_networks = provider
 [ml2_type_geneve]
 [ml2_type_gre]
 [ml2_type_vlan]
-network_vlan_ranges = provider
+# network_vlan_ranges = provider
 [ml2_type_vxlan]
-vni_ranges = 1:1000
+# vni_ranges = 1:1000
 [securitygroup]
 enable_ipset = true
 EOF
@@ -1501,10 +1504,10 @@ physical_interface_mappings = provider:ens192
 enable_security_group = true
 firewall_driver = neutron.agent.linux.iptables_firewall.IptablesFirewallDriver
 [vxlan]
-enable_vxlan = true
-# network dataVM
-local_ip = 10.10.12.61
-l2_population = true
+# enable_vxlan = true
+## network dataVM
+# local_ip = 10.10.12.61
+# l2_population = true
 EOF
 ```
 
@@ -1659,10 +1662,10 @@ physical_interface_mappings = provider:ens192
 enable_security_group = true
 firewall_driver = neutron.agent.linux.iptables_firewall.IptablesFirewallDriver
 [vxlan]
-enable_vxlan = true
-# network dataVM
-local_ip = 10.10.12.62
-l2_population = true
+# enable_vxlan = true
+## network dataVM
+# local_ip = 10.10.12.62
+# l2_population = true
 EOF
 ```
 
@@ -1719,15 +1722,7 @@ EOF
 chown root:neutron /etc/neutron/metadata_agent.ini
 ```
 
-- Chỉnh sửa bổ sung cấu hình trong `DEFAULT` trong file `/etc/neutron/neutron.conf` 
-```sh 
-[DEFAULT]
-# ...
-nova_metadata_host = 10.10.10.62
-metadata_proxy_shared_secret = passla123
-```
-
-Cấu hình để Compute sử dụng Networking 
+### Cấu hình để Compute sử dụng Networking 
 
 - Bổ sung cấu hình phần `[neutron]` trong `/etc/nova/nova.conf`
 ```sh 
@@ -1757,11 +1752,25 @@ systemctl start neutron-linuxbridge-agent.service \
 neutron-dhcp-agent.service neutron-metadata-agent.service
 ```
 
+Kiểm tra 
+```sh 
+[root@controller ~(admin-openrc)]$ openstack network agent list 
++--------------------------------------+--------------------+------------+-------------------+-------+-------+---------------------------+
+| ID                                   | Agent Type         | Host       | Availability Zone | Alive | State | Binary                    |
++--------------------------------------+--------------------+------------+-------------------+-------+-------+---------------------------+
+| 314bb32d-bd5b-4f84-833e-40efada2634b | Linux bridge agent | compute01  | None              | :-)   | UP    | neutron-linuxbridge-agent |
+| 47074bb4-d9eb-4781-894a-4af6fcfcf97a | DHCP agent         | compute01  | nova              | :-)   | UP    | neutron-dhcp-agent        |
+| 972fb008-d6a7-45a1-8769-72247b76229b | Linux bridge agent | controller | None              | :-)   | UP    | neutron-linuxbridge-agent |
+| a412c91c-5933-4277-bef6-618b93c6fd5d | Metadata agent     | compute01  | None              | :-)   | UP    | neutron-metadata-agent    |
+| cba1872d-b46f-4857-bff6-fd9ffeca0fed | L3 agent           | controller | nova              | :-)   | UP    | neutron-l3-agent          |
++--------------------------------------+--------------------+------------+-------------------+-------+-------+---------------------------+
+```
 ### 3.4.3 Cấu hình trên Node Compute2
 
 - Cài đặt các package 
 ```sh 
-yum install openstack-neutron openstack-neutron-ml2 openstack-neutron-linuxbridge ebtables -y```
+yum install openstack-neutron openstack-neutron-ml2 openstack-neutron-linuxbridge ebtables -y
+```
 
 Cấu hình neutron 
 
@@ -1829,7 +1838,10 @@ physical_interface_mappings = provider:ens192
 enable_security_group = true
 firewall_driver = neutron.agent.linux.iptables_firewall.IptablesFirewallDriver
 [vxlan]
-enable_vxlan = false
+# enable_vxlan = true
+## network dataVM
+# local_ip = 10.10.12.63
+# l2_population = true
 EOF
 ```
 
@@ -1865,15 +1877,28 @@ chown root:neutron /etc/neutron/dhcp_agent.ini
 
 Cấu hình metadata_agent
 
-- Chỉnh sửa bổ sung cấu hình trong `DEFAULT` trong file `/etc/neutron/neutron.conf` 
+- Backup file cấu hình 
 ```sh 
-[DEFAULT]
-# ...
-nova_metadata_host = 10.10.10.63
-metadata_proxy_shared_secret = passla123
+mv /etc/neutron/metadata_agent.{ini,ini.bk}
 ```
 
-Cấu hình để Compute sử dụng Networking 
+- Chỉnh sửa config 
+```sh 
+cat << EOF >> /etc/neutron/metadata_agent.ini
+[DEFAULT]
+nova_metadata_host = 10.10.10.63
+metadata_proxy_shared_secret = passla123
+[agent]
+[cache]
+EOF
+```
+
+- Phân quyền lại file config 
+```sh 
+chown root:neutron /etc/neutron/metadata_agent.ini
+```
+
+### Cấu hình để Compute sử dụng Networking 
 
 - Bổ sung cấu hình phần `[neutron]` trong `/etc/nova/nova.conf`
 ```sh 
@@ -2062,8 +2087,20 @@ systemctl restart openstack-nova-api.service
 
 Enable và start Block Storage services
 ```sh
-systemctl enable openstack-cinder-api.service openstack-cinder-scheduler.service
-systemctl start openstack-cinder-api.service openstack-cinder-scheduler.service
+systemctl enable openstack-cinder-api.service openstack-cinder-scheduler.service openstack-cinder-volume.service 
+systemctl start openstack-cinder-api.service openstack-cinder-scheduler.service openstack-cinder-volume.service 
+```
+
+Kiểm tra 
+```sh 
+[root@controller ~(admin-openrc)]$ cinder service-list 
++------------------+-----------------+------+---------+-------+----------------------------+-----------------+
+| Binary           | Host            | Zone | Status  | State | Updated_at                 | Disabled Reason |
++------------------+-----------------+------+---------+-------+----------------------------+-----------------+
+| cinder-backup    | controller      | nova | enabled | up    | 2019-05-06T07:20:01.000000 | -               |
+| cinder-scheduler | controller      | nova | enabled | up    | 2019-05-06T07:20:02.000000 | -               |
+| cinder-volume    | controller@lvm  | nova | enabled | up    | 2019-05-02T07:42:52.000000 | -               |
++------------------+-----------------+------+---------+-------+----------------------------+-----------------+
 ```
 
 ## 3.6 Cài đặt Horizon (Service Dashboard) (Chỉ cấu hình trên Node Controller) <a name="3.6"></a>
