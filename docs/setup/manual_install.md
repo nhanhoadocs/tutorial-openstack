@@ -1397,12 +1397,13 @@ cat << EOF >> /etc/neutron/neutron.conf
 [DEFAULT]
 bind_host = 10.10.10.61
 core_plugin = ml2
-#service_plugins = router
-service_plugins = 
+service_plugins = router
 transport_url = rabbit://openstack:passla123@10.10.10.61
 auth_strategy = keystone
 notify_nova_on_port_status_changes = true
 notify_nova_on_port_data_changes = true
+allow_overlapping_ips = True
+dhcp_agents_per_network = 2
 [agent]
 [cors]
 [database]
@@ -1467,7 +1468,8 @@ cat << EOF >> /etc/neutron/plugins/ml2/ml2_conf.ini
 type_drivers = flat,vlan,vxlan
 # tenant_network_types = vxlan
 tenant_network_types = 
-mechanism_drivers = linuxbridge,l2population
+# mechanism_drivers = linuxbridge,l2population
+mechanism_drivers = linuxbridge
 extension_drivers = port_security
 [ml2_type_flat]
 flat_networks = provider
@@ -1509,7 +1511,7 @@ firewall_driver = neutron.agent.linux.iptables_firewall.IptablesFirewallDriver
 # enable_vxlan = true
 ## network dataVM
 local_ip = 10.10.12.61
-l2_population = true
+# l2_population = true
 EOF
 ```
 
@@ -1667,7 +1669,7 @@ firewall_driver = neutron.agent.linux.iptables_firewall.IptablesFirewallDriver
 # enable_vxlan = true
 ## network dataVM
 local_ip = 10.10.12.62
-l2_population = true
+# l2_population = true
 EOF
 ```
 
@@ -1712,7 +1714,7 @@ mv /etc/neutron/metadata_agent.{ini,ini.bk}
 ```sh 
 cat << EOF >> /etc/neutron/metadata_agent.ini
 [DEFAULT]
-nova_metadata_host = 10.10.10.62
+nova_metadata_host = 10.10.10.61
 metadata_proxy_shared_secret = passla123
 [agent]
 [cache]
@@ -1843,7 +1845,7 @@ firewall_driver = neutron.agent.linux.iptables_firewall.IptablesFirewallDriver
 # enable_vxlan = true
 ## network dataVM
 local_ip = 10.10.12.63
-l2_population = true
+# l2_population = true
 EOF
 ```
 
@@ -1888,7 +1890,7 @@ mv /etc/neutron/metadata_agent.{ini,ini.bk}
 ```sh 
 cat << EOF >> /etc/neutron/metadata_agent.ini
 [DEFAULT]
-nova_metadata_host = 10.10.10.63
+nova_metadata_host = 10.10.10.61
 metadata_proxy_shared_secret = passla123
 [agent]
 [cache]
