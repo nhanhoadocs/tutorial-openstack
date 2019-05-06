@@ -1506,8 +1506,8 @@ firewall_driver = neutron.agent.linux.iptables_firewall.IptablesFirewallDriver
 [vxlan]
 # enable_vxlan = true
 ## network dataVM
-# local_ip = 10.10.12.61
-# l2_population = true
+local_ip = 10.10.12.61
+l2_population = true
 EOF
 ```
 
@@ -1664,8 +1664,8 @@ firewall_driver = neutron.agent.linux.iptables_firewall.IptablesFirewallDriver
 [vxlan]
 # enable_vxlan = true
 ## network dataVM
-# local_ip = 10.10.12.62
-# l2_population = true
+local_ip = 10.10.12.62
+l2_population = true
 EOF
 ```
 
@@ -1840,8 +1840,8 @@ firewall_driver = neutron.agent.linux.iptables_firewall.IptablesFirewallDriver
 [vxlan]
 # enable_vxlan = true
 ## network dataVM
-# local_ip = 10.10.12.63
-# l2_population = true
+local_ip = 10.10.12.63
+l2_population = true
 EOF
 ```
 
