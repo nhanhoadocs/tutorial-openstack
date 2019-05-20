@@ -306,7 +306,7 @@ systemctl start chronyd
 systemctl enable chronyd
 ```
 
-### Các bước chuẩn bị trên Compute1
+### Các bước chuẩn bị trên Compute2
 - Cài đặt package 
 ```sh 
 yum install -y chrony
