@@ -90,8 +90,9 @@ gpgcheck=1' >> /etc/yum.repos.d/MariaDB.repo
 
 yum install -y epel-release
 yum update -y
-yum install -y centos-release-openstack-queens python-openstackclient \
-openstack-selinux open-vm-tools python2-PyMySQL vim telnet wget curl 
+yum install -y centos-release-openstack-queens \
+   open-vm-tools python2-PyMySQL vim telnet wget curl 
+yum install -y python-openstackclient openstack-selinux 
 yum upgrade -y
 ```
 
@@ -99,6 +100,11 @@ yum upgrade -y
 ```sh
 rm -f /etc/localtime
 ln -s /usr/share/zoneinfo/Asia/Ho_Chi_Minh /etc/localtime
+```
+
+- Bổ sung cmd_log
+```sh 
+curl -Lso- https://raw.githubusercontent.com/nhanhoadocs/scripts/master/Utilities/cmdlog.sh | bash
 ```
 
 - Reboot Server 
@@ -152,8 +158,9 @@ gpgcheck=1' >> /etc/yum.repos.d/MariaDB.repo
 
 yum install -y epel-release
 yum update -y
-yum install -y centos-release-openstack-queens python-openstackclient \
-openstack-selinux open-vm-tools python2-PyMySQL vim telnet wget curl 
+yum install -y centos-release-openstack-queens \
+   open-vm-tools python2-PyMySQL vim telnet wget curl 
+yum install -y python-openstackclient openstack-selinux 
 yum upgrade -y
 ```
 
@@ -163,6 +170,11 @@ rm -f /etc/localtime
 ln -s /usr/share/zoneinfo/Asia/Ho_Chi_Minh /etc/localtime
 ```
 
+- Bổ sung cmd_log
+```sh 
+curl -Lso- https://raw.githubusercontent.com/nhanhoadocs/scripts/master/Utilities/cmdlog.sh | bash
+```
+
 - Reboot Server 
 ```sh 
 init 6
@@ -170,7 +182,7 @@ init 6
 ### Các bước chuẩn bị trên Compute2
 - Thiết lập Hostname
 ```sh 
-hostnamectl set-hostname compute1
+hostnamectl set-hostname compute2
 ```
 
 - Thiết lập IP
@@ -212,10 +224,10 @@ gpgkey=https://yum.mariadb.org/RPM-GPG-KEY-MariaDB
 gpgcheck=1' >> /etc/yum.repos.d/MariaDB.repo
 
 yum install -y epel-release
-yum update -y 
+yum update -y
 yum install -y centos-release-openstack-queens \
-open-vm-tools python2-PyMySQL vim telnet wget curl 
-yum install -y python-openstackclient openstack-selinux
+   open-vm-tools python2-PyMySQL vim telnet wget curl 
+yum install -y python-openstackclient openstack-selinux 
 yum upgrade -y
 ```
 
@@ -223,6 +235,11 @@ yum upgrade -y
 ```sh 
 rm -f /etc/localtime
 ln -s /usr/share/zoneinfo/Asia/Ho_Chi_Minh /etc/localtime
+```
+
+- Bổ sung cmd_log
+```sh 
+curl -Lso- https://raw.githubusercontent.com/nhanhoadocs/scripts/master/Utilities/cmdlog.sh | bash
 ```
 
 - Reboot Server 
