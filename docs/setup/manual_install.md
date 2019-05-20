@@ -1952,7 +1952,21 @@ neutron-dhcp-agent.service neutron-metadata-agent.service
 
 ## 3.5 Cài đặt Cinder (Service Storage) (Chỉ cấu hình trên Node Controller) <a name="3.5"></a>
 
-Chuẩn bị: Add thêm 1 ổ /dev/sdb tối thiểu 100G vào Node Controller
+Chuẩn bị: Add thêm 1 ổ `/dev/sdb` tối thiểu 100G vào Node Controller
+
+- Kiểm tra ổ 
+```sh
+[root@controller ~(admin-openrc)]$ lsblk
+NAME                    MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+sr0                      11:0    1 1024M  0 rom  
+sda                     252:0    0   50G  0 disk 
+├─sda1                  252:1    0    4G  0 part /boot
+├─sda2                  252:2    0   38G  0 part 
+│ └─VolGroup00-LogVol01 253:0    0   38G  0 lvm  /
+└─vda3                  252:3    0    8G  0 part [SWAP]
+sdb                     252:16   0  100G  0 disk 
+[root@controller ~(admin-openrc)]$ 
+```
 
 - Đăng nhập MySQL
 ```sh 
