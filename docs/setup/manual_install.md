@@ -1773,8 +1773,9 @@ systemctl start neutron-linuxbridge-agent.service \
 neutron-dhcp-agent.service neutron-metadata-agent.service
 ```
 
-Kiểm tra 
+Kiểm tra trên node CONTROLLER
 ```sh 
+[root@controller ~(admin-openrc)]$ source admin-openrc 
 [root@controller ~(admin-openrc)]$ openstack network agent list 
 +--------------------------------------+--------------------+------------+-------------------+-------+-------+---------------------------+
 | ID                                   | Agent Type         | Host       | Availability Zone | Alive | State | Binary                    |
