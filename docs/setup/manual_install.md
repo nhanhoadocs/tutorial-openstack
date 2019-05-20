@@ -2202,7 +2202,7 @@ TIME_ZONE = "Asia/Ho_Chi_Minh"
 ```sh 
 rm -f /etc/openstack-dashboard/local_settings
 yum install wget -y 
-wget -O 
+wget https://raw.githubusercontent.com/uncelvel/tutorial-openstack/master/tools/local_settings -O /etc/openstack-dashboard/local_settings
 chown root:apache /etc/openstack-dashboard/local_settings
 ```
 	
