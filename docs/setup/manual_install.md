@@ -2244,3 +2244,14 @@ Truy cập `Projects` --> `Compute` --> `Instance` Chọn `Launch Instance`
 ![](../../images/noha_createvm02.png)
 ![](../../images/noha_createvm03.png)
 ![](../../images/noha_createvm04.png)
+
+> VM tạo thành công nhưng chưa ping được ra ngoài, SSH ngoài vào ko OK 
+
+## 3.10 Mở Security Group 
+Truy cập `Projects` --> `Network` --> `Security Groups` Chọn `Manage Rules`
+![](../../images/noha_sc01.png)
+
+Chọn `Add rules`
+![](../../images/noha_sc02.png)
+
+> Kiểm tra lại VM ok 
