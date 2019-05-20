@@ -2232,3 +2232,15 @@ Truy cập `Admin` --> `Network` --> `Networks` Chọn `Create Network`
 ![](../../images/noha_createnetwork2.png)
 ![](../../images/noha_createnetwork3.png)
 ![](../../images/noha_createnetwork4.png)
+
+
+## 3.9 Tạo Flavor
+Truy cập `Admin` --> `Compute` --> `Flavors` Chọn `Create Flavor`
+![](../../images/noha_createflavor01.png)
+
+## 3.9 Boot thử 1 máy ảo 
+Truy cập `Projects` --> `Compute` --> `Instance` Chọn `Launch Instance`
+![](../../images/noha_createvm01.png)
+![](../../images/noha_createvm02.png)
+![](../../images/noha_createvm03.png)
+![](../../images/noha_createvm04.png)
