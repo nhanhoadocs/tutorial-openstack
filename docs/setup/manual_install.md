@@ -1483,8 +1483,7 @@ cat << EOF >> /etc/neutron/plugins/ml2/ml2_conf.ini
 [l2pop]
 [ml2]
 type_drivers = flat,vlan,vxlan
-# tenant_network_types = vxlan
-tenant_network_types = 
+tenant_network_types = vxlan
 # mechanism_drivers = linuxbridge,l2population
 mechanism_drivers = linuxbridge
 extension_drivers = port_security
