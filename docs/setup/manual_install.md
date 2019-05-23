@@ -1494,7 +1494,7 @@ flat_networks = provider
 [ml2_type_vlan]
 # network_vlan_ranges = provider
 [ml2_type_vxlan]
-# vni_ranges = 1:1000
+vni_ranges = 1:1000
 [securitygroup]
 enable_ipset = true
 EOF
