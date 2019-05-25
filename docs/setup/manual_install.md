@@ -1742,7 +1742,7 @@ EOF
 chown root:neutron /etc/neutron/metadata_agent.ini
 ```
 
-### Cấu hình để Compute sử dụng Networking 
+Để nova services trên node compute có thể sử dụng networking service thì chúng ta bổ sung thêm cấu hình cho nova.conf như sau 
 
 - Bổ sung cấu hình phần `[neutron]` trong `/etc/nova/nova.conf`
 ```sh 
@@ -1772,7 +1772,7 @@ systemctl start neutron-linuxbridge-agent.service \
 neutron-dhcp-agent.service neutron-metadata-agent.service
 ```
 
-Kiểm tra trên node CONTROLLER
+### Quay lại node Controller kiểm tra
 ```sh 
 [root@controller ~(admin-openrc)]$ source admin-openrc 
 [root@controller ~(admin-openrc)]$ openstack network agent list 
@@ -1919,7 +1919,7 @@ EOF
 chown root:neutron /etc/neutron/metadata_agent.ini
 ```
 
-### Cấu hình để Compute sử dụng Networking 
+Để nova services trên node compute có thể sử dụng networking service thì chúng ta bổ sung thêm cấu hình cho nova.conf như sau 
 
 - Bổ sung cấu hình phần `[neutron]` trong `/etc/nova/nova.conf`
 ```sh 
@@ -1947,6 +1947,24 @@ neutron-dhcp-agent.service neutron-metadata-agent.service
 
 systemctl start neutron-linuxbridge-agent.service \
 neutron-dhcp-agent.service neutron-metadata-agent.service
+```
+
+### Quay lại node Controller kiểm tra
+```sh 
+[root@controller ~(admin-openrc)]$ source admin-openrc 
+[root@controller ~(admin-openrc)]$ openstack network agent list 
++--------------------------------------+--------------------+------------+-------------------+-------+-------+---------------------------+
+| ID                                   | Agent Type         | Host       | Availability Zone | Alive | State | Binary                    |
++--------------------------------------+--------------------+------------+-------------------+-------+-------+---------------------------+
+| 314bb32d-bd5b-4f84-833e-a263440efadb | Linux bridge agent | compute01  | None              | :-)   | UP    | neutron-linuxbridge-agent |
+| 314bb32d-bd5b-4f84-833e-42634b0efada | Linux bridge agent | compute02  | None              | :-)   | UP    | neutron-linuxbridge-agent |
+| 47074bb4-d9eb-4781-894a-4af97f6fcfca | DHCP agent         | compute01  | nova              | :-)   | UP    | neutron-dhcp-agent        |
+| 47074bb4-d9eb-4781-894a-4afcf97af6fc | DHCP agent         | compute02  | nova              | :-)   | UP    | neutron-dhcp-agent        |
+| 972fb008-d6a7-45a1-8769-72247b76229b | Linux bridge agent | controller | None              | :-)   | UP    | neutron-linuxbridge-agent |
+| a412c91c-5933-4277-bef6-618b93c6fd5d | Metadata agent     | compute01  | None              | :-)   | UP    | neutron-metadata-agent    |
+| a412c91c-5933-4277-bef6-61c6fd5d8b93 | Metadata agent     | compute02  | None              | :-)   | UP    | neutron-metadata-agent    |
+| cba1872d-b46f-4857-bff6-fd9ffeca0fed | L3 agent           | controller | nova              | :-)   | UP    | neutron-l3-agent          |
++--------------------------------------+--------------------+------------+-------------------+-------+-------+---------------------------+
 ```
 
 ## 3.5 Cài đặt Cinder (Service Storage) (Chỉ cấu hình trên Node Controller) <a name="3.5"></a>
