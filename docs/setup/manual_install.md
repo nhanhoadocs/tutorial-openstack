@@ -2214,14 +2214,6 @@ OPENSTACK_KEYSTONE_DEFAULT_ROLE = "user"
 #line 481
 TIME_ZONE = "Asia/Ho_Chi_Minh"
 ```
-
-> Hoặc có thể thực hiện như sau 
-```sh 
-rm -f /etc/openstack-dashboard/local_settings
-yum install wget -y 
-wget https://raw.githubusercontent.com/uncelvel/tutorial-openstack/master/tools/local_settings -O /etc/openstack-dashboard/local_settings
-chown root:apache /etc/openstack-dashboard/local_settings
-```
 	
 - Thêm config httpd cho dashboard
 ```sh 
