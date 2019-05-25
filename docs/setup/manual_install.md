@@ -1558,7 +1558,7 @@ EOF
 chown root:neutron /etc/neutron/l3_agent.ini
 ```
 
-Cấu hình compute sử dụng networking service 
+Bổ sung cấu hình phép nova service trên controller sử dụng networking service 
 - Chỉnh sửa bổ sung cấu hình `[neutron]` trong file `/etc/nova/nova.conf`
 ```
 [neutron]
