@@ -40,6 +40,7 @@
 
 4.5 Các lưu ý đối với VM Windows
 
-4.6 Cấu hình 
+[4.6 Thao tác đóng Images](https://github.com/uncelvel/create-images-openstack)
 
-[4.7 Thao tác đóng Images](https://github.com/uncelvel/create-images-openstack)
+[4.7 Graylog thu thập log OPS]()
+
