@@ -250,6 +250,9 @@ init 6
 ## 2.3 Cấu hình NTPD  <a name="2.3"></a>
 
 ### Các bước chuẩn bị trên Controller
+
+Trong bài lab này sẽ sử dụng Node Controller làm NTPD Server 
+
 - Cài đặt package 
 ```sh 
 yum install -y chrony
@@ -277,6 +280,11 @@ EOF
 systemctl start chronyd
 systemctl enable chronyd
 ```
+
+- Kiểm tra đồng bộ thời gian trên Controller
+![](../../images/chrony_server.png)
+
+![](../../images/chrony_server2.png)
 
 ### Các bước chuẩn bị trên Compute1
 - Cài đặt package 
@@ -306,6 +314,9 @@ systemctl start chronyd
 systemctl enable chronyd
 ```
 
+- Kiểm tra đồng bộ thời gian từ NTPD-Server 
+![](../../images/chrony_client.png)
+
 ### Các bước chuẩn bị trên Compute2
 - Cài đặt package 
 ```sh 
@@ -333,6 +344,8 @@ EOF
 systemctl start chronyd
 systemctl enable chronyd
 ```
+
+- Kiểm tra đồng bộ thời gian từ NTPD-Server tương tự như trên Compute1
 
 ## 2.4 Cài đặt MySQL (Chỉ cấu hình trên Node Controller)  <a name="2.4"></a>
 
