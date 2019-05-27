@@ -107,6 +107,15 @@ ln -s /usr/share/zoneinfo/Asia/Ho_Chi_Minh /etc/localtime
 curl -Lso- https://raw.githubusercontent.com/nhanhoadocs/scripts/master/Utilities/cmdlog.sh | bash
 ```
 
+- Cài đặt collector sidecard để đẩy log lên Graylog
+```sh 
+yum install wget -y
+wget https://raw.githubusercontent.com/nhanhoadocs/scripts/master/Utilities/graylog-collector-sidecar.sh
+chmod +x graylog-collector-sidecar.sh 
+bash graylog-collector-sidecar.sh 
+```
+> Nhập IP management của Graylog Server và IP management của Server 
+
 - Reboot Server 
 ```sh 
 init 6
@@ -175,6 +184,15 @@ ln -s /usr/share/zoneinfo/Asia/Ho_Chi_Minh /etc/localtime
 curl -Lso- https://raw.githubusercontent.com/nhanhoadocs/scripts/master/Utilities/cmdlog.sh | bash
 ```
 
+- Cài đặt collector sidecard để đẩy log lên Graylog
+```sh 
+yum install wget -y
+wget https://raw.githubusercontent.com/nhanhoadocs/scripts/master/Utilities/graylog-collector-sidecar.sh
+chmod +x graylog-collector-sidecar.sh 
+bash graylog-collector-sidecar.sh 
+```
+> Nhập IP management của Graylog Server và IP management của Server 
+
 - Reboot Server 
 ```sh 
 init 6
@@ -241,6 +259,15 @@ ln -s /usr/share/zoneinfo/Asia/Ho_Chi_Minh /etc/localtime
 ```sh 
 curl -Lso- https://raw.githubusercontent.com/nhanhoadocs/scripts/master/Utilities/cmdlog.sh | bash
 ```
+
+- Cài đặt collector sidecard để đẩy log lên Graylog
+```sh 
+yum install wget -y
+wget https://raw.githubusercontent.com/nhanhoadocs/scripts/master/Utilities/graylog-collector-sidecar.sh
+chmod +x graylog-collector-sidecar.sh 
+bash graylog-collector-sidecar.sh 
+```
+> Nhập IP management của Graylog Server và IP management của Server 
 
 - Reboot Server 
 ```sh 
@@ -2060,11 +2087,10 @@ systemctl enable lvm2-lvmetad.service
 systemctl start lvm2-lvmetad.service
 ```
 
-- Chỉnh sửa file `/etc/lvm/lvm.conf` bổ sung filter cho sdb
+- Chỉnh sửa file `/etc/lvm/lvm.conf` bổ sung filter cho `sdb`
 ```sh 
-  devices {
-  ...
-  filter = [ "a/sdb/", "r/.*/"] # Add vào line 142
+    # Line 142
+    filter = [ "a/sdb/", "r/.*/"]
 ```
 
 - Tạo LVM volume /dev/sdb:
