@@ -107,7 +107,7 @@ ln -s /usr/share/zoneinfo/Asia/Ho_Chi_Minh /etc/localtime
 curl -Lso- https://raw.githubusercontent.com/nhanhoadocs/scripts/master/Utilities/cmdlog.sh | bash
 ```
 
-- Cài đặt collector sidecard để đẩy log lên Graylog
+- Option bổ sung: Cài đặt collector sidecard để đẩy log lên Graylog
 ```sh 
 yum install wget -y
 wget https://raw.githubusercontent.com/nhanhoadocs/scripts/master/Utilities/graylog-collector-sidecar.sh
@@ -184,7 +184,7 @@ ln -s /usr/share/zoneinfo/Asia/Ho_Chi_Minh /etc/localtime
 curl -Lso- https://raw.githubusercontent.com/nhanhoadocs/scripts/master/Utilities/cmdlog.sh | bash
 ```
 
-- Cài đặt collector sidecard để đẩy log lên Graylog
+- Option bổ sung: Cài đặt collector sidecard để đẩy log lên Graylog
 ```sh 
 yum install wget -y
 wget https://raw.githubusercontent.com/nhanhoadocs/scripts/master/Utilities/graylog-collector-sidecar.sh
@@ -260,7 +260,7 @@ ln -s /usr/share/zoneinfo/Asia/Ho_Chi_Minh /etc/localtime
 curl -Lso- https://raw.githubusercontent.com/nhanhoadocs/scripts/master/Utilities/cmdlog.sh | bash
 ```
 
-- Cài đặt collector sidecard để đẩy log lên Graylog
+- Option bổ sung: Cài đặt collector sidecard để đẩy log lên Graylog
 ```sh 
 yum install wget -y
 wget https://raw.githubusercontent.com/nhanhoadocs/scripts/master/Utilities/graylog-collector-sidecar.sh
