@@ -32,15 +32,16 @@
 
 [4.1 Pacemaker Corosyc - High Availability](https://github.com/uncelvel/ghichep-pacemaker-corosync)
 
-4.2 Cài đặt HA Queens
+[4.2 Cài đặt HA Queens](https://github.com/uncelvel/tutorial-openstackHA/)
 
 4.3 Cấu hình Live Migrate
 
 4.4 Evacute VM 
 
-4.5 Các lưu ý đối với VM Windows
+[4.5 Các lưu ý đối với VM Windows](docs/other/VM_windows.md)
 
 [4.6 Thao tác đóng Images](https://github.com/uncelvel/create-images-openstack)
 
-[4.7 Graylog thu thập log OPS]()
+[4.7 Qos Network](docs/other/qos_network.md)
 
+[4.8 Qos Disk](docs/other/qos_disk.md)
