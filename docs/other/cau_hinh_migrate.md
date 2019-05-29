@@ -2,7 +2,36 @@
 
 Cấu hình tạo key nova trên node Compute01
 ```sh 
-
+[root@compute01 ~]# usermod -s /bin/bash nova
+[root@compute01 ~]# su nova 
+bash-4.2$ cd /var/lib/nova/
+bash-4.2$ ls
+buckets  instances  keys  networks  tmp
+bash-4.2$ pwd 
+/var/lib/nova
+bash-4.2$ ssh-keygen 
+Generating public/private rsa key pair.
+Enter file in which to save the key (/var/lib/nova/.ssh/id_rsa): 
+Created directory '/var/lib/nova/.ssh'.
+Enter passphrase (empty for no passphrase): 
+Enter same passphrase again: 
+Your identification has been saved in /var/lib/nova/.ssh/id_rsa.
+Your public key has been saved in /var/lib/nova/.ssh/id_rsa.pub.
+The key fingerprint is:
+SHA256:QFzexFdc5dejzL4N61aj+8b91aLCxf6U46tK0M0m8ag nova@compute01
+The key's randomart image is:
++---[RSA 2048]----+
+|     ......  o..+|
+|     ... o. . ...|
+|      . . o.   .+|
+|       . . *o . o|
+|        S +.=+   |
+|         o o+  +.|
+|        E..o oO =|
+|         .o .*==o|
+|          .o=BB+o|
++----[SHA256]-----+
+bash-4.2$ 
 ```
 
 
