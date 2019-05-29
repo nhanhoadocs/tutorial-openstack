@@ -34,7 +34,7 @@
 
 [4.2 Cài đặt HA Queens](https://github.com/uncelvel/tutorial-openstackHA/)
 
-4.3 Cấu hình Live Migrate
+[4.3 Cấu hình Migrate](docs/other/cau_hinh_migrate.md)
 
 4.4 Evacute VM 
 
@@ -45,3 +45,5 @@
 [4.7 Qos Network](docs/other/qos_network.md)
 
 [4.8 Qos Disk](docs/other/qos_disk.md)
+
+[4.9 Check list cài đặt Compute](docs/other/check_list_compute.md)
