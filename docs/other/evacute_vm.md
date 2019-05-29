@@ -3,6 +3,7 @@
 Kỹ thuật Evacuate máy ảo là kỹ thuật cứu máy ảo trong trường hợp node Compute bị sự cố về phần cứng và không thể start lên được. 
 
 Các điều kiện để thực hiện việc evacuate máy ảo là : 
+
 - Node Compute gặp sự cố đảm bảo tình trạng down. 
 - Các node Compute sử dụng chung share storage (như Ceph).
 
@@ -48,8 +49,9 @@ nova evacuate $vm_id $destination_compute
 ```
 
 Trong đó : 
-    - $vm_id : ID của vm được lấy ở trên
-    - $destination_compute : Compute đích được evacuate
+
+- $vm_id : ID của vm được lấy ở trên
+- $destination_compute : Compute đích được evacuate
 
 Kiểm tra lại log tại phía Compute đích. VM được evacuate sẽ được rebuild lại với cấu hình cũ. Kiểm tra tại file log của Compute đích với câu lệnh : 
 ```sh 
@@ -65,7 +67,8 @@ nova host-evacuate --target $destination_compute $source_compute
 ```
 
 Trong đó : 
-    - $destination_compute : Compute đích được evacuate (compute còn sống)
-    - $source_compute : Compute bị lỗi.
+
+- $destination_compute : Compute đích được evacuate (compute còn sống)
+- $source_compute : Compute bị lỗi.
 
 Thực hiện kiểm tra máy ảo đã được evacuate trên Horizon.
