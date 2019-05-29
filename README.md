@@ -36,7 +36,7 @@
 
 [4.3 Cấu hình Migrate](docs/other/cau_hinh_migrate.md)
 
-4.4 Evacute VM 
+[4.4 Evacute VM](docs/other/evacute_vm.md)
 
 [4.5 Các lưu ý đối với VM Windows](docs/other/VM_windows.md)
 
