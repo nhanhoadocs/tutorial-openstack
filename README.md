@@ -47,3 +47,5 @@
 [4.8 Qos Disk](docs/other/qos_disk.md)
 
 [4.9 Check list cài đặt Compute](docs/other/check_list_compute.md)
+
+[](docs/other/multi-region.md)
