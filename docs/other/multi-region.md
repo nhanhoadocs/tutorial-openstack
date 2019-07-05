@@ -56,7 +56,7 @@ https://www.cnblogs.com/nongchaoer/p/6297834.html
 ---
 ## Chuẩn bị
 
-- Triển khai 2 cụm Openstack theo docs manual [Cài đặt](../docs/manual_install.md)
+- Triển khai 2 cụm Openstack theo docs manual [Cài đặt](../setup/manual_install.md)
 
 ![](../../images/multi-region/Ip_planning.png)
 
