@@ -910,3 +910,24 @@ Nếu xuất hiện lỗi tại Node Compute
 ```
 Kiểm tra lại cấu hình Neutron:
 - Dịch vụ Neutron đã cấu hình không chính xác, kiểm tra lại service neutron
+
+### Bước 9: Redirect Horizon cụm 2 về horizon cụm 1 
+
+Login vào Server 192.168.80.85
+
+Chỉnh sửa file direct
+```sh 
+mv /var/www/html/index.{html,html.bk}
+filehtml=/var/www/html/index.html
+touch $filehtml
+cat << EOF >> $filehtml
+<html>
+<head>
+<META HTTP-EQUIV="Refresh" Content="0.5; URL=http://192.168.80.83/dashboard">
+</head>
+<body>
+<center> <h1>Redirecting to OpenStack Dashboard</h1> </center>
+</body>
+</html>
+EOF
+```
