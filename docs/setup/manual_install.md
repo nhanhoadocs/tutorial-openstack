@@ -981,6 +981,7 @@ enabled = true
 memcache_servers = 10.10.10.61:11211
 [cells]
 [cinder]
+os_region_name = RegionOne
 [compute]
 [conductor]
 [console]
@@ -1009,11 +1010,13 @@ user_domain_name = default
 project_name = service
 username = nova
 password = passla123
+region_name = RegionOne
 [libvirt]
 [matchmaker_redis]
 [metrics]
 [mks]
 [neutron]
+region_name = RegionOne
 [notifications]
 [osapi_v21]
 [oslo_concurrency]
