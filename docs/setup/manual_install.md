@@ -1160,6 +1160,7 @@ auth_strategy = keystone
 [cache]
 [cells]
 [cinder]
+os_region_name = RegionOne
 [compute]
 [conductor]
 [console]
@@ -1281,6 +1282,7 @@ auth_strategy = keystone
 [cache]
 [cells]
 [cinder]
+os_region_name = RegionOne
 [compute]
 [conductor]
 [console]
