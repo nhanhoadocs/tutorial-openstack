@@ -1188,6 +1188,7 @@ user_domain_name = default
 project_name = service
 username = nova
 password = passla123
+region_name = RegionOne
 [libvirt]
 # egrep -c '(vmx|svm)' /proc/cpuinfo = 0
 virt_type = qemu
@@ -1310,6 +1311,7 @@ user_domain_name = default
 project_name = service
 username = nova
 password = passla123
+region_name = RegionOne
 [libvirt]
 # egrep -c '(vmx|svm)' /proc/cpuinfo = 0
 virt_type = qemu
