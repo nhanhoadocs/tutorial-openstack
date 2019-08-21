@@ -605,6 +605,7 @@ systemctl status httpd.service
 - Tạo file biến môi trường `openrc-admin` cho tài khoản quản trị
 ```sh 
 cat << EOF >> admin-openrc
+export export OS_REGION_NAME=RegionOne
 export OS_PROJECT_DOMAIN_NAME=Default
 export OS_USER_DOMAIN_NAME=Default
 export OS_PROJECT_NAME=admin
@@ -613,13 +614,14 @@ export OS_PASSWORD=passla123
 export OS_AUTH_URL=http://10.10.10.61:5000/v3
 export OS_IDENTITY_API_VERSION=3
 export OS_IMAGE_API_VERSION=2
-export PS1='[\u@\h \W(admin-openrc)]\$ '
+export PS1='[\u@\h \W(admin-openrc-r1)]\$ '
 EOF
 ```
 
 - Tạo file biến môi trường `openrc-demo` cho tài khoản  demo
 ```sh 
 cat << EOF >> demo-openrc
+export export OS_REGION_NAME=RegionOne
 export OS_PROJECT_DOMAIN_NAME=Default
 export OS_USER_DOMAIN_NAME=Default
 export OS_PROJECT_NAME=demo
@@ -628,7 +630,7 @@ export OS_PASSWORD=passla123
 export OS_AUTH_URL=http://10.10.10.61:5000/v3
 export OS_IDENTITY_API_VERSION=3
 export OS_IMAGE_API_VERSION=2
-export PS1='[\u@\h \W(demo-openrc)]\$ '
+export PS1='[\u@\h \W(demo-openrc-r1)]\$ '
 EOF
 ```
 
@@ -1482,6 +1484,7 @@ user_domain_name = default
 project_name = service
 username = neutron
 password = passla123
+region_name = RegionOne
 [matchmaker_redis]
 [nova]
 auth_url = http://10.10.10.61:35357
@@ -1683,6 +1686,7 @@ user_domain_name = default
 project_name = service
 username = neutron
 password = passla123
+region_name = RegionOne
 [matchmaker_redis]
 [nova]
 [oslo_concurrency]
@@ -1866,6 +1870,7 @@ user_domain_name = default
 project_name = service
 username = neutron
 password = passla123
+region_name = RegionOne
 [matchmaker_redis]
 [nova]
 [oslo_concurrency]
@@ -2149,6 +2154,7 @@ user_domain_id = default
 project_name = service
 username = cinder
 password = passla123
+region_name = RegionOne
 [matchmaker_redis]
 [nova]
 [oslo_concurrency]
