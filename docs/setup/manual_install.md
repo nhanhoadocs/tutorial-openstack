@@ -1215,6 +1215,9 @@ region_name = RegionOne
 [libvirt]
 # egrep -c '(vmx|svm)' /proc/cpuinfo = 0
 virt_type = qemu
+#virt_type = kvm
+#cpu_mode = host-passthrough
+#hw_disk_discard = unmap
 [matchmaker_redis]
 [metrics]
 [mks]
@@ -1339,6 +1342,9 @@ region_name = RegionOne
 [libvirt]
 # egrep -c '(vmx|svm)' /proc/cpuinfo = 0
 virt_type = qemu
+#virt_type = kvm
+#cpu_mode = host-passthrough
+#hw_disk_discard = unmap
 [matchmaker_redis]
 [metrics]
 [mks]
