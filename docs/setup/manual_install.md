@@ -538,7 +538,12 @@ connection = mysql+pymysql://keystone:passla123@10.10.10.61/keystone
 [oslo_messaging_amqp]
 [oslo_messaging_kafka]
 [oslo_messaging_notifications]
+#driver = messagingv2
 [oslo_messaging_rabbit]
+#rabbit_retry_interval = 1
+#rabbit_retry_backoff = 2
+#amqp_durable_queues = true
+#rabbit_ha_queues = true
 [oslo_messaging_zmq]
 [oslo_middleware]
 [oslo_policy]
@@ -605,6 +610,7 @@ systemctl status httpd.service
 - Tạo file biến môi trường `openrc-admin` cho tài khoản quản trị
 ```sh 
 cat << EOF >> admin-openrc
+export export OS_REGION_NAME=RegionOne
 export OS_PROJECT_DOMAIN_NAME=Default
 export OS_USER_DOMAIN_NAME=Default
 export OS_PROJECT_NAME=admin
@@ -613,13 +619,14 @@ export OS_PASSWORD=passla123
 export OS_AUTH_URL=http://10.10.10.61:5000/v3
 export OS_IDENTITY_API_VERSION=3
 export OS_IMAGE_API_VERSION=2
-export PS1='[\u@\h \W(admin-openrc)]\$ '
+export PS1='[\u@\h \W(admin-openrc-r1)]\$ '
 EOF
 ```
 
 - Tạo file biến môi trường `openrc-demo` cho tài khoản  demo
 ```sh 
 cat << EOF >> demo-openrc
+export export OS_REGION_NAME=RegionOne
 export OS_PROJECT_DOMAIN_NAME=Default
 export OS_USER_DOMAIN_NAME=Default
 export OS_PROJECT_NAME=demo
@@ -628,7 +635,7 @@ export OS_PASSWORD=passla123
 export OS_AUTH_URL=http://10.10.10.61:5000/v3
 export OS_IDENTITY_API_VERSION=3
 export OS_IMAGE_API_VERSION=2
-export PS1='[\u@\h \W(demo-openrc)]\$ '
+export PS1='[\u@\h \W(demo-openrc-r1)]\$ '
 EOF
 ```
 
@@ -777,12 +784,18 @@ user_domain_name = Default
 project_name = service
 username = glance
 password = passla123
+region_name = RegionOne
 [matchmaker_redis]
 [oslo_concurrency]
 [oslo_messaging_amqp]
 [oslo_messaging_kafka]
 [oslo_messaging_notifications]
+#driver = messagingv2
 [oslo_messaging_rabbit]
+#rabbit_ha_queues = true
+#rabbit_retry_interval = 1
+#rabbit_retry_backoff = 2
+#amqp_durable_queues= true
 [oslo_messaging_zmq]
 [oslo_middleware]
 [oslo_policy]
@@ -822,11 +835,17 @@ user_domain_name = Default
 project_name = service
 username = glance
 password = passla123
+region_name = RegionOne
 [matchmaker_redis]
 [oslo_messaging_amqp]
 [oslo_messaging_kafka]
 [oslo_messaging_notifications]
+#driver = messagingv2
 [oslo_messaging_rabbit]
+#rabbit_ha_queues = true
+#rabbit_retry_interval = 1
+#rabbit_retry_backoff = 2
+#amqp_durable_queues= true
 [oslo_messaging_zmq]
 [oslo_policy]
 [paste_deploy]
@@ -981,6 +1000,7 @@ enabled = true
 memcache_servers = 10.10.10.61:11211
 [cells]
 [cinder]
+os_region_name = RegionOne
 [compute]
 [conductor]
 [console]
@@ -1009,11 +1029,13 @@ user_domain_name = default
 project_name = service
 username = nova
 password = passla123
+region_name = RegionOne
 [libvirt]
 [matchmaker_redis]
 [metrics]
 [mks]
 [neutron]
+region_name = RegionOne
 [notifications]
 [osapi_v21]
 [oslo_concurrency]
@@ -1021,6 +1043,7 @@ lock_path = /var/lib/nova/tmp
 [oslo_messaging_amqp]
 [oslo_messaging_kafka]
 [oslo_messaging_notifications]
+#driver = messagingv2
 [oslo_messaging_rabbit]
 rabbit_ha_queues = true
 rabbit_retry_interval = 1
@@ -1031,7 +1054,6 @@ amqp_durable_queues= true
 [oslo_policy]
 [pci]
 [placement]
-os_region_name = RegionOne
 project_domain_name = Default
 project_name = service
 auth_type = password
@@ -1039,6 +1061,7 @@ user_domain_name = Default
 auth_url = http://10.10.10.61:5000/v3
 username = placement
 password = passla123
+os_region_name = RegionOne
 [quota]
 [rdp]
 [remote_debug]
@@ -1160,6 +1183,7 @@ auth_strategy = keystone
 [cache]
 [cells]
 [cinder]
+os_region_name = RegionOne
 [compute]
 [conductor]
 [console]
@@ -1187,9 +1211,13 @@ user_domain_name = default
 project_name = service
 username = nova
 password = passla123
+region_name = RegionOne
 [libvirt]
 # egrep -c '(vmx|svm)' /proc/cpuinfo = 0
 virt_type = qemu
+#virt_type = kvm
+#cpu_mode = host-passthrough
+#hw_disk_discard = unmap
 [matchmaker_redis]
 [metrics]
 [mks]
@@ -1201,6 +1229,7 @@ lock_path = /var/lib/nova/tmp
 [oslo_messaging_amqp]
 [oslo_messaging_kafka]
 [oslo_messaging_notifications]
+#driver = messagingv2
 [oslo_messaging_rabbit]
 rabbit_ha_queues = true
 rabbit_retry_interval = 1
@@ -1211,7 +1240,6 @@ amqp_durable_queues= true
 [oslo_policy]
 [pci]
 [placement]
-os_region_name = RegionOne
 project_domain_name = Default
 project_name = service
 auth_type = password
@@ -1219,6 +1247,7 @@ user_domain_name = Default
 auth_url = http://10.10.10.61:5000/v3
 username = placement
 password = passla123
+os_region_name = RegionOne
 [quota]
 [rdp]
 [remote_debug]
@@ -1281,6 +1310,7 @@ auth_strategy = keystone
 [cache]
 [cells]
 [cinder]
+os_region_name = RegionOne
 [compute]
 [conductor]
 [console]
@@ -1308,9 +1338,13 @@ user_domain_name = default
 project_name = service
 username = nova
 password = passla123
+region_name = RegionOne
 [libvirt]
 # egrep -c '(vmx|svm)' /proc/cpuinfo = 0
 virt_type = qemu
+#virt_type = kvm
+#cpu_mode = host-passthrough
+#hw_disk_discard = unmap
 [matchmaker_redis]
 [metrics]
 [mks]
@@ -1322,6 +1356,7 @@ lock_path = /var/lib/nova/tmp
 [oslo_messaging_amqp]
 [oslo_messaging_kafka]
 [oslo_messaging_notifications]
+#driver = messagingv2
 [oslo_messaging_rabbit]
 rabbit_ha_queues = true
 rabbit_retry_interval = 1
@@ -1332,7 +1367,6 @@ amqp_durable_queues= true
 [oslo_policy]
 [pci]
 [placement]
-os_region_name = RegionOne
 project_domain_name = Default
 project_name = service
 auth_type = password
@@ -1340,6 +1374,7 @@ user_domain_name = Default
 auth_url = http://10.10.10.61:5000/v3
 username = placement
 password = passla123
+os_region_name = RegionOne
 [quota]
 [rdp]
 [remote_debug]
@@ -1475,16 +1510,17 @@ user_domain_name = default
 project_name = service
 username = neutron
 password = passla123
+region_name = RegionOne
 [matchmaker_redis]
 [nova]
 auth_url = http://10.10.10.61:35357
 auth_type = password
 project_domain_name = default
 user_domain_name = default
-region_name = RegionOne
 project_name = service
 username = nova
 password = passla123
+region_name = RegionOne
 [oslo_concurrency]
 lock_path = /var/lib/neutron/tmp
 [oslo_messaging_amqp]
@@ -1566,7 +1602,7 @@ firewall_driver = neutron.agent.linux.iptables_firewall.IptablesFirewallDriver
 [vxlan]
 # enable_vxlan = true
 ## network dataVM
-local_ip = 10.10.12.61
+local_ip = 10.10.11.61
 # l2_population = true
 EOF
 ```
@@ -1600,19 +1636,19 @@ chown root:neutron /etc/neutron/l3_agent.ini
 
 Bổ sung cấu hình phép nova service trên controller sử dụng networking service 
 - Chỉnh sửa bổ sung cấu hình `[neutron]` trong file `/etc/nova/nova.conf`
-```
+```sh
 [neutron]
 url = http://10.10.10.61:9696
 auth_url = http://10.10.10.61:35357
 auth_type = password
 project_domain_name = default
 user_domain_name = default
-region_name = RegionOne
 project_name = service
 username = neutron
 password = passla123
 service_metadata_proxy = true
 metadata_proxy_shared_secret = passla123
+region_name = RegionOne
 ```
 Các Networking service initialization script yêu cầu symbolic link `/etc/neutron/plugin.ini` tới ML2 plug-in config file `/etc/neutron/plugins/ml2/ml2_conf.ini`
 
@@ -1676,6 +1712,7 @@ user_domain_name = default
 project_name = service
 username = neutron
 password = passla123
+region_name = RegionOne
 [matchmaker_redis]
 [nova]
 [oslo_concurrency]
@@ -1683,6 +1720,7 @@ lock_path = /var/lib/neutron/tmp
 [oslo_messaging_amqp]
 [oslo_messaging_kafka]
 [oslo_messaging_notifications]
+#driver = messagingv2
 [oslo_messaging_rabbit]
 rabbit_ha_queues = true
 rabbit_retry_interval = 1
@@ -1724,7 +1762,7 @@ firewall_driver = neutron.agent.linux.iptables_firewall.IptablesFirewallDriver
 [vxlan]
 # enable_vxlan = true
 ## network dataVM
-local_ip = 10.10.12.62
+local_ip = 10.10.11.62
 # l2_population = true
 EOF
 ```
@@ -1792,10 +1830,10 @@ auth_url = http://10.10.10.61:35357
 auth_type = password
 project_domain_name = default
 user_domain_name = default
-region_name = RegionOne
 project_name = service
 username = neutron
 password = passla123
+region_name = RegionOne
 ```
 
 - Restart lại Compute service
@@ -1859,6 +1897,7 @@ user_domain_name = default
 project_name = service
 username = neutron
 password = passla123
+region_name = RegionOne
 [matchmaker_redis]
 [nova]
 [oslo_concurrency]
@@ -1866,7 +1905,12 @@ lock_path = /var/lib/neutron/tmp
 [oslo_messaging_amqp]
 [oslo_messaging_kafka]
 [oslo_messaging_notifications]
+#driver = messagingv2
 [oslo_messaging_rabbit]
+rabbit_ha_queues = true
+rabbit_retry_interval = 1
+rabbit_retry_backoff = 2
+amqp_durable_queues= true
 [oslo_messaging_zmq]
 [oslo_middleware]
 [oslo_policy]
@@ -1901,7 +1945,7 @@ firewall_driver = neutron.agent.linux.iptables_firewall.IptablesFirewallDriver
 [vxlan]
 # enable_vxlan = true
 ## network dataVM
-local_ip = 10.10.12.63
+local_ip = 10.10.11.63
 # l2_population = true
 EOF
 ```
@@ -1969,10 +2013,10 @@ auth_url = http://10.10.10.61:35357
 auth_type = password
 project_domain_name = default
 user_domain_name = default
-region_name = RegionOne
 project_name = service
 username = neutron
 password = passla123
+region_name = RegionOne
 ```
 
 - Restart lại Compute service
@@ -2115,6 +2159,8 @@ auth_strategy = keystone
 my_ip = 10.10.10.61
 enabled_backends = lvm
 glance_api_servers = http://10.10.10.61:9292
+#rpc_backend = rabbit
+#control_exchange = cinder
 [lvm]
 volume_driver = cinder.volume.drivers.lvm.LVMVolumeDriver
 volume_group = cinder-volumes
@@ -2142,6 +2188,7 @@ user_domain_id = default
 project_name = service
 username = cinder
 password = passla123
+region_name = RegionOne
 [matchmaker_redis]
 [nova]
 [oslo_concurrency]
@@ -2149,7 +2196,12 @@ lock_path = /var/lib/cinder/tmp
 [oslo_messaging_amqp]
 [oslo_messaging_kafka]
 [oslo_messaging_notifications]
+#driver = messagingv2
 [oslo_messaging_rabbit]
+#rabbit_retry_interval = 1
+#rabbit_retry_backoff = 2
+#amqp_durable_queues = true
+#rabbit_ha_queues = true
 [oslo_messaging_zmq]
 [oslo_middleware]
 [oslo_policy]
